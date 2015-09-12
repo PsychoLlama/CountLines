@@ -13,13 +13,19 @@ describe('Java line counter:', function() {
   });
 
   afterEach(function() {
-    allMessages.push(countLines.messages);
+    console.log(countLines.messages);
   });
 
   function getNumLines() {
     return countLines.in(input);
   }
 
+  it('just a test', function() {
+    input.push('c');
+//    input.push('x/**/y/**/');
+    expect(getNumLines()).toBe(1);
+  });
+/*
   it('an empty array', function() {
     expect(getNumLines()).toBe(0);
   });
@@ -78,58 +84,55 @@ describe('Java line counter:', function() {
     input.push(' \t\n\r/*');
     expect(getNumLines()).toBe(0);
   });
-
-  it('whitespace followed by block comment', function() {
-    input.push(' \t\n\r/**/');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('whitespace followed by block comment followed by text', function() {
-    input.push(' \t\n\r/* comment');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('block comment only', function() {
-    input.push('/**/');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('block comment only containing text', function() {
-    input.push('/* comment */');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('block comment followed by text', function() {
-    input.push('/**/ hello');
-    expect(getNumLines()).toBe(1);
-  });
-
-  it('block comment with comment followed by text', function() {
-    input.push('/* comment */ hello');
-    expect(getNumLines()).toBe(1);
-  });
-
-  it('multiple block comments with comments', function() {
-    input.push('/* comment */ /* hello! */');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('Two block comments with text in between', function() {
-    input.push('/* comment */ valid content /* hello! */');
-    expect(getNumLines()).toBe(1);
-  });
-
-  it('block comment followed by line comment', function() {
-    input.push('/**/ \t\n\r // comment');
-    expect(getNumLines()).toBe(0);
-  });
-
-  it('block comment followed by line comment', function() {
-    input.push('/*/*/*');
-    expect(getNumLines()).toBe(1);
-  });
-
-  if (allMessages.length) {
-    console.log(allMessages);
-  }
+/**/
+//  it('whitespace followed by block comment', function() {
+//    input.push(' \t\n\r/**/');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('whitespace followed by block comment followed by text', function() {
+//    input.push(' \t\n\r/* comment');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('block comment only', function() {
+//    input.push('/**/');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('block comment only containing text', function() {
+//    input.push('/* comment */');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('block comment followed by text', function() {
+//    input.push('/**/ hello');
+//    expect(getNumLines()).toBe(1);
+//  });
+//
+//  it('block comment with comment followed by text', function() {
+//    input.push('/* comment */ hello');
+//    expect(getNumLines()).toBe(1);
+//  });
+//
+//  it('multiple block comments with comments', function() {
+//    input.push('/* comment */ /* hello! */');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('Two block comments with text in between', function() {
+//    input.push('/* comment */ valid content /* hello! */');
+//    expect(getNumLines()).toBe(1);
+//  });
+//
+//  it('block comment followed by line comment', function() {
+//    input.push('/**/ \t\n\r // comment');
+//    expect(getNumLines()).toBe(0);
+//  });
+//
+//  it('block comment followed by line comment', function() {
+//    input.push('/*/*/*');
+//    expect(getNumLines()).toBe(1);
+//  });
+/**/
 });

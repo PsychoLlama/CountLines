@@ -32,6 +32,15 @@ function validLine(line, countLines) {
     // Just whitespace with a line comment
     return;
   }
+  countLines.logger(line);
+  var regex = 'c';
+//  var regex = /\/\*.*?\*\//;
+  if (line.match(regex)) {
+console.log('here');
+    line = line.replace(regex, 'd');
+  }
+  countLines.logger(line);
+/*
   if (line.match(/^\s*(\/\*.*\*\/\s*)+?$/)) {
     // Just whitespace with complete
     //  block comment and optional whitespace
@@ -55,6 +64,7 @@ function validLine(line, countLines) {
     // Block comment does not end on this line
     return;
   }
+/**/
   return true;
 }
 
