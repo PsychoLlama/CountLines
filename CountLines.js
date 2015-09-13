@@ -22,50 +22,62 @@ CountLines.prototype = {
 }
 
 function validLine(line, countLines) {
-//    countLines.logger('<' + line + '>');
-//  var validLine = false;
+  var validLine = false;
+  var insideQuote = false;
+  
   if (line.match(/^\s*$/)) {
-    // Just whitespace
     return;
   }
   if (line.match(/^\s*\/\//)) {
-    // Just whitespace with a line comment
     return;
   }
-  countLines.logger(line);
-  var regex = 'c';
-//  var regex = /\/\*.*?\*\//;
-  if (line.match(regex)) {
-console.log('here');
-    line = line.replace(regex, 'd');
+  for (var i = 0; i < line.length; i++) {
+    switch(line[i]) {
+      case '*':
+        if (insideQuote) break;
+        if (!countLines.insideBlockComment) {
+          validLine = true;
+        } else if (charAt(line, i + 1) === '/') {
+          countLines.insideBlockComment = false;
+          i++;
+        }
+        break;
+      case '"':
+        if (countLines.insideBlockComment) break;
+        insideQuote = !insideQuote;
+        validLine = true;
+        break;
+      case ' ':
+      case '\t':
+      case '\r':
+      case '\n':
+        break;
+      case '/':
+        if (insideQuote) break;
+        if (countLines.insideBlockComment) break;
+        nextChar = charAt(line, i+1);
+        if (nextChar === '*') {
+          countLines.insideBlockComment = true;
+          i++;
+        } else if (nextChar === '/') {
+          return validLine;
+        } else {
+          validLine = true;
+        }
+        break;
+      default:
+        if (countLines.insideBlockComment) break;
+        validLine = true;
+    }
   }
-  countLines.logger(line);
-/*
-  if (line.match(/^\s*(\/\*.*\*\/\s*)+?$/)) {
-    // Just whitespace with complete
-    //  block comment and optional whitespace
-    return;
+  
+  return validLine;
+}
+function charAt(line, index) {
+  if (line.length <= index) {
+    return false;
   }
-  if (line.match(/^\s*(\/\*.*\*\/.*)+?$/)) {
-    // Just whitespace with complete
-    //  block comment and optional whitespace
-    return true;
-  }
-  if (line.match(/^\s*\/\*.*\*\/((\s*\/\/.*)|\s*)$/)) {
-    // Just whitespace with complete
-    //  block comment and optional whitespace
-    return;
-  }
-  if (line.match(/^\s*\/\*.*\*\/.*\S*.*$/)) {
-    // Complete block comment followed by valid content
-    return true;
-  }
-  if (line.match(/^\s*\/\*.*((\*[^/])|.*)$/)) {
-    // Block comment does not end on this line
-    return;
-  }
-/**/
-  return true;
+  return line[index];
 }
 
 exports.CountLines = CountLines;
