@@ -153,12 +153,6 @@ describe('Java line counter:', function() {
       expectedNumLines = 2;
     });
     
-    it('apostraphe inside quotes', function() {
-      input.push(""'" \' /*" '"");
-      input.push('content */');
-      expectedNumLines = 2;
-    });
-    
   });
   
 });
