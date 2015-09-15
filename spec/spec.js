@@ -15,7 +15,7 @@ describe('Java line counter:', function () {
   });
 
   function getNumLines() {
-    return countLines.in(input);
+    return countLines.input(input);
   }
 
   describe('single line, no comments', function () {
