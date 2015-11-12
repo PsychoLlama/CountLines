@@ -93,4 +93,4 @@ function charAt(line, index) {
   return line[index];
 }
 
-exports.CountLines = CountLines;
+module.exports = CountLines;

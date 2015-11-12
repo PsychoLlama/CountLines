@@ -1,9 +1,8 @@
-/*global require, describe, beforeEach, afterEach,
-  it, expect*/
+/*global require, describe, beforeEach, afterEach, it, expect */
+/*jslint node: true */
+'use strict';
 
-var exports = require('../CountLines.js');
-var CountLines = exports.CountLines;
-//var CountLines = require('../CountLines.js').CountLines;
+var CountLines = require('../CountLines.js');
 
 describe('Java line counter:', function () {
   var countLines, input,

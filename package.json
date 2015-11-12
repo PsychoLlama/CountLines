@@ -1,0 +1,28 @@
+{
+  "name": "countlines",
+  "version": "1.0.0",
+  "description": "Take software in and return the number of valid lines",
+  "main": "CountLines.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PsychoLlama/CountLines.git"
+  },
+  "keywords": [
+    "code",
+    "kata",
+    "count",
+    "lines"
+  ],
+  "author": "Jesse Gibson <jesse@gundb.io> (http://techllama.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PsychoLlama/CountLines/issues"
+  },
+  "homepage": "https://github.com/PsychoLlama/CountLines#readme",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  }
+}
