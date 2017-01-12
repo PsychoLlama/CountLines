@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/PsychoLlama/CountLines#readme",
   "devDependencies": {
-    "jasmine": "^2.3.2"
+    "jasmine": "^2.5.3"
   }
 }
